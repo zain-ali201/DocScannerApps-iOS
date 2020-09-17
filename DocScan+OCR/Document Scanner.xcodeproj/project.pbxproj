@@ -11,6 +11,11 @@
 		0415D4DD2111F13600D82454 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 0415D4DC2111F13600D82454 /* tessdata */; };
 		0415D4DF2111F19400D82454 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0415D4DE2111F19400D82454 /* Launch Screen.storyboard */; };
 		0415D4E12111F2F400D82454 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0415D4E02111F2F400D82454 /* GoogleMobileAds.framework */; };
+		1874FBE8250A13F8009E7526 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1874FBE7250A13F8009E7526 /* Main.storyboard */; };
+		1874FBEC250A225C009E7526 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874FBEB250A225C009E7526 /* HomeViewController.m */; };
+		1874FBEF250A636E009E7526 /* DataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874FBEE250A636E009E7526 /* DataCell.m */; };
+		18779B882510A38F00462704 /* AboutusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18779B862510A38E00462704 /* AboutusVC.m */; };
+		18DDE7D9250BAFB800DB339C /* ImageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE7D8250BAFB800DB339C /* ImageObject.m */; };
 		45042A492180764400F17ABF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45042A482180764400F17ABF /* libc++.tbd */; };
 		6429F35C1B88B1550015B567 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6429F35B1B88B1550015B567 /* CoreImage.framework */; };
 		649C412A1B40DC4100DB3A53 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649C41291B40DC4100DB3A53 /* CustomNavigationController.m */; };
@@ -53,6 +58,15 @@
 		0415D4DC2111F13600D82454 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = SOURCE_ROOT; };
 		0415D4DE2111F19400D82454 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0415D4E02111F2F400D82454 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		1874FBE7250A13F8009E7526 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1874FBEA250A225C009E7526 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		1874FBEB250A225C009E7526 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		1874FBED250A636E009E7526 /* DataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCell.h; sourceTree = "<group>"; };
+		1874FBEE250A636E009E7526 /* DataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCell.m; sourceTree = "<group>"; };
+		18779B862510A38E00462704 /* AboutusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutusVC.m; sourceTree = "<group>"; };
+		18779B872510A38F00462704 /* AboutusVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutusVC.h; sourceTree = "<group>"; };
+		18DDE7D7250BAFB800DB339C /* ImageObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageObject.h; sourceTree = "<group>"; };
+		18DDE7D8250BAFB800DB339C /* ImageObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageObject.m; sourceTree = "<group>"; };
 		45042A482180764400F17ABF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		6429F35B1B88B1550015B567 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		649C41281B40DC4100DB3A53 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
@@ -138,6 +152,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1874FBE5250A0F34009E7526 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				64DF26321B393467009D0F8B /* AppDelegate.h */,
+				64DF26331B393467009D0F8B /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		1874FBE6250A10C8009E7526 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0415D4DE2111F19400D82454 /* Launch Screen.storyboard */,
+				1874FBE7250A13F8009E7526 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		1874FBE9250A221E009E7526 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				1874FBEA250A225C009E7526 /* HomeViewController.h */,
+				1874FBEB250A225C009E7526 /* HomeViewController.m */,
+				1874FBED250A636E009E7526 /* DataCell.h */,
+				1874FBEE250A636E009E7526 /* DataCell.m */,
+				18DDE7D7250BAFB800DB339C /* ImageObject.h */,
+				18DDE7D8250BAFB800DB339C /* ImageObject.m */,
+			);
+			name = HomeVC;
+			sourceTree = "<group>";
+		};
+		18779B852510A37500462704 /* SettingsVCs */ = {
+			isa = PBXGroup;
+			children = (
+				18779B872510A38F00462704 /* AboutusVC.h */,
+				18779B862510A38E00462704 /* AboutusVC.m */,
+			);
+			name = SettingsVCs;
+			sourceTree = "<group>";
+		};
 		6403DB801B78419A00B16A60 /* Magnetic zoomer */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,8 +319,8 @@
 			children = (
 				0415D4E02111F2F400D82454 /* GoogleMobileAds.framework */,
 				64C233581B8EDDF6008FFBC1 /* Tesseract OCR */,
-				64BBCA861B8BEECD00E2884F /* Frameworks */,
 				64DF262D1B393467009D0F8B /* Document Scanner */,
+				64BBCA861B8BEECD00E2884F /* Frameworks */,
 				64DF262C1B393467009D0F8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -282,15 +336,14 @@
 		64DF262D1B393467009D0F8B /* Document Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				0415D4DE2111F19400D82454 /* Launch Screen.storyboard */,
 				64DF263B1B393467009D0F8B /* Images.xcassets */,
-				64DF26321B393467009D0F8B /* AppDelegate.h */,
-				64DF26331B393467009D0F8B /* AppDelegate.m */,
+				1874FBE6250A10C8009E7526 /* Storyboards */,
 				64C233571B8EDD39008FFBC1 /* Open source libraries */,
 				64FE9E2A1B3A92F200707802 /* Constant values */,
-				64FE9E291B3A92E700707802 /* View controllers */,
 				64FE9E281B3A92D100707802 /* Custom view */,
 				64FE9E271B3A92C000707802 /* Main Function */,
+				1874FBE5250A0F34009E7526 /* AppDelegate */,
+				64FE9E291B3A92E700707802 /* View controllers */,
 				64DF262E1B393467009D0F8B /* Supporting Files */,
 			);
 			path = "Document Scanner";
@@ -332,11 +385,13 @@
 		64FE9E291B3A92E700707802 /* View controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1874FBE9250A221E009E7526 /* HomeVC */,
 				64FE9E2B1B3A92FE00707802 /* Main screen */,
 				64FE9E2C1B3A930500707802 /* Cropper View */,
 				64FE9E2D1B3A930E00707802 /* Process View */,
 				64D2969F1B3CEAFD004CE3D6 /* Share screen */,
 				64BBCABF1B8C4B1000E2884F /* Image recognizer */,
+				18779B852510A37500462704 /* SettingsVCs */,
 			);
 			name = "View controllers";
 			sourceTree = "<group>";
@@ -427,6 +482,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -448,6 +504,7 @@
 				0415D4DF2111F19400D82454 /* Launch Screen.storyboard in Resources */,
 				64DF263C1B393467009D0F8B /* Images.xcassets in Resources */,
 				0415D4DD2111F13600D82454 /* tessdata in Resources */,
+				1874FBE8250A13F8009E7526 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,13 +518,17 @@
 				64FE9E241B3A37AD00707802 /* ProcessViewController.m in Sources */,
 				64BBCAC31B8C4D4700E2884F /* ImageRecognizer.m in Sources */,
 				64DF26651B393480009D0F8B /* PictureSelectorViewController.m in Sources */,
+				1874FBEF250A636E009E7526 /* DataCell.m in Sources */,
 				64D296A21B3D0FC4004CE3D6 /* ShareObject.m in Sources */,
 				649C412A1B40DC4100DB3A53 /* CustomNavigationController.m in Sources */,
+				1874FBEC250A225C009E7526 /* HomeViewController.m in Sources */,
 				64DF26341B393467009D0F8B /* AppDelegate.m in Sources */,
 				64BBCABE1B8C4B0D00E2884F /* OCRViewController.m in Sources */,
 				64C233561B8EDD36008FFBC1 /* MBProgressHUD.m in Sources */,
+				18779B882510A38F00462704 /* AboutusVC.m in Sources */,
 				64DF26691B393480009D0F8B /* SelectableRoundView.m in Sources */,
 				64DF26311B393467009D0F8B /* main.m in Sources */,
+				18DDE7D9250BAFB800DB339C /* ImageObject.m in Sources */,
 				64DF26721B393489009D0F8B /* CDCameraView.m in Sources */,
 				64DF26731B393489009D0F8B /* CDImageRectangleDetector.m in Sources */,
 				64DF26791B393B3C009D0F8B /* FlashButton.m in Sources */,
@@ -596,14 +657,14 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Document Scanner/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sprintsols.docscanocr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3165120d-cbfe-4fd4-8310-997a1af5ad23";
-				PROVISIONING_PROFILE_SPECIFIER = "SprintDevProfile v21";
+				PROVISIONING_PROFILE_SPECIFIER = "SprintDevProfile v1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -637,14 +698,14 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Document Scanner/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sprintsols.docscanocr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bb7eda87-0c4c-489f-9da9-a3903452b01f";
-				PROVISIONING_PROFILE_SPECIFIER = DocScanOCR_Appstore;
+				PROVISIONING_PROFILE_SPECIFIER = "SprintDistProfile v2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

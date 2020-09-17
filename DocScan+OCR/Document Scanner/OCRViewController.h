@@ -14,7 +14,7 @@
 @interface OCRViewController : UIViewController{
     
     UIView* _headerView;
-    UITextView* _resultView;
+    IBOutlet UITextView* _resultView;
     UIButton* _shareButton;
     
     NSLayoutConstraint* _resultBtm;

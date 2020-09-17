@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "PictureSelectorViewController.h"
 #import "CustomNavigationController.h"
 
 @import GoogleMobileAds;
@@ -21,18 +20,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [GADMobileAds configureWithApplicationID:@"ca-app-pub-1649226560506116~3928634742"];
+    [NSThread sleepForTimeInterval:3];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-1649226560506116/2232409695"];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    PictureSelectorViewController* picVC = [[PictureSelectorViewController alloc] initWithNibName:nil bundle:nil];
-    CustomNavigationController* navController = [[CustomNavigationController alloc] initWithRootViewController:picVC];
-
-    [self.window makeKeyAndVisible];
-    self.window.rootViewController = navController;
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//
+//    PictureSelectorViewController* picVC = [[PictureSelectorViewController alloc] initWithNibName:nil bundle:nil];
+//    CustomNavigationController* navController = [[CustomNavigationController alloc] initWithRootViewController:picVC];
+//
+//    [self.window makeKeyAndVisible];
+//    self.window.rootViewController = navController;
     
     // Override point for customization after application launch.
     return YES;

@@ -17,15 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [self initializeMainScreen];
     [self initializePhotoPicker];
-    [self initializeHeaderView];
-    [self initializeFooterView];
-
+//    [self initializeHeaderView];
+//    [self initializeFooterView];
+    
+    _flashButton = [[FlashButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80.0, 10.0, 60.0, 74.0)];
+    [_flashButton addTarget:self action:@selector(flashButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:_flashButton];
 }
 
 
@@ -88,7 +90,7 @@
     [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(3, 4)];
 
     
-    UILabel* screenTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0)/2.0, 33.0, 150.0, 18)];
+    UILabel* screenTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0)/2.0, 40.0, 150.0, 18)];
     [screenTitleLabel setAttributedText:attrString];
     [screenTitleLabel setTextAlignment:NSTextAlignmentCenter];
     [screenTitleLabel setTextColor:[UIColor whiteColor]];
@@ -124,8 +126,8 @@
     [self.view addConstraints:headerViewConstraints];
 }
 
--(void)initializeFooterView{
-    
+-(void)initializeFooterView
+{
     _footerView = [[UIView alloc] initWithFrame:CGRectZero];
     [_footerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_footerView setBackgroundColor:[CropperConstantValues standartBackgroundColor]];
@@ -151,10 +153,6 @@
     [captureBtn addTarget:self action:@selector(captureImageClicked) forControlEvents:UIControlEventTouchUpInside];
     [captureBtn setBackgroundImage:[UIImage imageNamed:@"capture_button_icon"] forState:UIControlStateNormal];
     [_footerView addSubview:captureBtn];
-    
-    _flashButton = [[FlashButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80.0, 0.0, 60.0, 74.0)];
-    [_flashButton addTarget:self action:@selector(flashButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [_footerView addSubview:_flashButton];
     
     
     [self createGalleryButton];
@@ -219,22 +217,28 @@
         // Typically you should handle an error more gracefully than this.
     }];}
 
--(void)flashButtonClicked{
-    
+-(IBAction)backBtnAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)flashButtonClicked:(id)sender
+{
     [self.cameraViewController setCaptureFlashType:!_flashButton.flashTypeIsON];
     [_flashButton changeFlashType:!_flashButton.flashTypeIsON];
 }
 
--(void)selectFromCameraRollClicked{
+-(IBAction)selectFromCameraRollClicked:(id)sender
+{
     
     [self presentViewController:self.picker animated:YES completion:^{
        
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }];
-    
 }
 
--(void)captureImageClicked{
+-(IBAction)captureImageClicked:(id)sender
+{
     
     [self.cameraViewController captureImageWithCompletionHander:^(id data) {
         
@@ -270,8 +274,9 @@
 }
 
 -(void)cropperViewdidCropped:(UIImage *)croppedImage cropVC:(CropViewController *)cropVC{
-    
-    ProcessViewController* processVC = [[ProcessViewController alloc] init];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ProcessViewController *processVC = (ProcessViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ProcessViewController"];
+//    ProcessViewController* processVC = [[ProcessViewController alloc] init];
     processVC.orignalImage = _selectedImage;
     processVC.croppedImage = croppedImage;
     processVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -283,8 +288,8 @@
 
 -(void)initializeMainScreen{
     
-    self.cameraViewController = [[CDCameraView alloc] initWithFrame:CGRectMake(0.0, [CropperConstantValues pictureSelectorHeaderViewHeight], self.view.frame.size.width, self.view.frame.size.height -[CropperConstantValues pictureSelectorFooterViewHeight] -[CropperConstantValues pictureSelectorHeaderViewHeight] )];
-    [self.view addSubview:self.cameraViewController];
+    self.cameraViewController = [[CDCameraView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - 140)];
+    [cameraView addSubview:self.cameraViewController];
     
     [self.cameraViewController initializeCameraScreen];
     [self.cameraViewController setCameraViewType:CDCameraViewTypeColorful];

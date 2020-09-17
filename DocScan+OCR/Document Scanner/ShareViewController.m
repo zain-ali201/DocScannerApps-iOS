@@ -26,14 +26,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self initializeContents];
+    _thumbnailImageView.image = self.savedImage;
+//    [self initializeContents];
     
-    [self initializeHeaderView];
-    [self initializeMainView];
+//    [self initializeHeaderView];
+//    [self initializeMainView];
     
-    [self checkAndRunAdsense];
+//    [self checkAndRunAdsense];
 
     // Do any additional setup after loading the view.
 }
@@ -50,20 +51,8 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 0) {
-        
-        ShareObject* object = [_contentArray objectAtIndex:indexPath.row];
-        [self shareWithType:object.shareType];
-        
-    }else{
-        
-        [self backButtonClicked];
-    }
-}
-
--(void)shareWithType:(ShareType)type{
+-(void)shareWithType:(ShareType)type
+{
 
     switch (type) {
         case ShareTypeCameraRoll:
@@ -98,6 +87,34 @@
     }
 }
 
+-(IBAction)shareBtnAction:(UIButton*)button
+{
+    if (button.tag == 1001)
+    {
+        [self putToOCRScreen];
+    }
+    else if (button.tag == 1002)
+    {
+        [self createPDFfromImage:self.savedImage];
+    }
+    else if (button.tag == 1003)
+    {
+        [self shareImage];
+    }
+    else if (button.tag == 1004)
+    {
+        UIImageWriteToSavedPhotosAlbum(self.savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    }
+    else if (button.tag == 1005)
+    {
+        [self shareWithFacebook];
+    }
+    else if (button.tag == 1006)
+    {
+        [self shareWithTwitter];
+    }
+}
+
 //camera roll
 
 - (void)               image:(UIImage *)image
@@ -105,7 +122,7 @@
                  contextInfo:(void *)contextInfo;
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Docs Scanner"
-                                                    message:@"Image Saved Successfully."
+                                                    message:@"Image saved successfully in your photo gallery."
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -153,16 +170,18 @@
     
 }
 
--(void)putToOCRScreen{
-    
-    OCRViewController* ocrVC = [[OCRViewController alloc] init];
+-(void)putToOCRScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    OCRViewController *ocrVC = (OCRViewController *)[storyboard instantiateViewControllerWithIdentifier:@"OCRViewController"];
+//    OCRViewController* ocrVC = [[OCRViewController alloc] init];
     ocrVC.rawImage = self.savedImage;
     [self.navigationController pushViewController:ocrVC animated:YES];
 }
 
 
--(void)shareImage{
-    
+-(void)shareImage
+{
     NSArray *activityItems = @[self.savedImage];
 
     NSArray * excludeActivities = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeMessage];
@@ -170,11 +189,13 @@
     UIActivityViewController * activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityController.excludedActivityTypes = excludeActivities;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
         //iPhone
         [self presentViewController:activityController animated:YES completion:nil];
     }
-    else {
+    else
+    {
         //iPad
         UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:activityController];
         [popup presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height*0.4 + 250.0, 0, 0)inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -195,7 +216,7 @@
 
 
 #pragma mark
-#pragma mark uitableview datasource
+#pragma mark UITableview datasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   
@@ -259,8 +280,21 @@
     return cell;
 }
 
--(void)initializeMainView{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.section == 0) {
+        
+        ShareObject* object = [_contentArray objectAtIndex:indexPath.row];
+        [self shareWithType:object.shareType];
+        
+    }else{
+        
+//        [self backButtonClicked];
+    }
+}
+
+-(void)initializeMainView
+{
     self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectZero];
     self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
     self.bannerView.adUnitID =  kAdmobAdsenseBannerUnitID;
@@ -352,8 +386,8 @@
     [self.view addConstraints:listConstraints];
 
 }
--(void)initializeHeaderView{
-    
+-(void)initializeHeaderView
+{
     _headerView = [[UIView alloc] initWithFrame:CGRectZero];
     [_headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_headerView setBackgroundColor:[CropperConstantValues standartBackgroundColor]];
@@ -486,7 +520,7 @@
     NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     
     NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"covertedPDF.pdf"];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"convertedPDF.pdf"];
     
     // instructs the mutable data object to write its context to a file on disk
     if ([pdfData writeToFile:documentDirectoryFilename atomically:YES]) {
@@ -526,8 +560,8 @@
 }
 
 
--(void)backButtonClicked{
-    
+-(IBAction)backButtonClicked:(id)sender
+{
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

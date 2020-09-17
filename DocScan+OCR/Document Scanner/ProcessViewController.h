@@ -12,7 +12,9 @@
 
 @interface ProcessViewController : UIViewController<UIActionSheetDelegate, UIAlertViewDelegate,CropDelegate>{
     
-    UIImageView* _imageViewer;
+    IBOutlet UIImageView* _imageViewer;
+    IBOutlet UIView* saveView;
+    IBOutlet UIView* editView;
     
     UIView* _headerView;
     UIView* _footerView;

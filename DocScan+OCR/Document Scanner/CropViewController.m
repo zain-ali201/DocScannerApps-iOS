@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor redColor];
     
     croppedImage = [[CIImage alloc] initWithImage:self.originalImage];
     
@@ -35,7 +33,7 @@
                                                   bottomRight:_detectedRectangleFeature.bottomRight];
     
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:62.0/255.0 green:62.0/255.0 blue:62.0/255.0 alpha:1];
     
     static float margin = 0.0;
     CGFloat imageViewHeight =  self.view.frame.size.height -[CropperConstantValues pictureSelectorFooterViewHeight] -[CropperConstantValues pictureSelectorHeaderViewHeight] - margin * 2;
@@ -212,7 +210,7 @@
     
     _headerView = [[UIView alloc] initWithFrame:CGRectZero];
     [_headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_headerView setBackgroundColor:[CropperConstantValues standartBackgroundColor]];
+    [_headerView setBackgroundColor:[UIColor colorWithRed:62.0/255.0 green:62.0/255.0 blue:62.0/255.0 alpha:1]];
     [self.view addSubview:_headerView];
     
     UILabel* screenTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0)/2.0, 33.0, 150.0, 18)];
@@ -280,7 +278,7 @@
     
     _footerView = [[UIView alloc] initWithFrame:CGRectZero];
     [_footerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_footerView setBackgroundColor:[CropperConstantValues standartBackgroundColor]];
+    [_footerView setBackgroundColor:[UIColor colorWithRed:62.0/255.0 green:62.0/255.0 blue:62.0/255.0 alpha:1]];
     [self.view addSubview:_footerView];
     
     UIButton* doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];

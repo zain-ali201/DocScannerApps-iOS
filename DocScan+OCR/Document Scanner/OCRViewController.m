@@ -29,7 +29,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self initializeHeaderView];
+//    [self initializeHeaderView];
     
     self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectZero];
     self.bannerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -72,13 +72,13 @@
     [self.view addConstraints:bannerConstraints];
 
     
-    _resultView = [[UITextView alloc] initWithFrame:CGRectZero];
-    _resultView.textColor = [UIColor blackColor];
-    _resultView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_resultView setEditable:YES];
-    [_resultView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
-    _resultView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_resultView];
+//    _resultView = [[UITextView alloc] initWithFrame:CGRectZero];
+//    _resultView.textColor = [UIColor blackColor];
+//    _resultView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [_resultView setEditable:YES];
+//    [_resultView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
+//    _resultView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:_resultView];
     
     NSLayoutConstraint* resultTop = [NSLayoutConstraint constraintWithItem:_resultView
                                                                  attribute:NSLayoutAttributeTop

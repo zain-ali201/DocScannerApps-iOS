@@ -20,12 +20,13 @@
     UIImage* _selectedImage;
     
     UIView* _headerView;
-    UIButton* cameraRollBtn;
+    IBOutlet UIView* bottomView;
+    IBOutlet UIButton* cameraRollBtn;
 
-    FlashButton* _flashButton;
+    IBOutlet FlashButton* _flashButton;
     UIView* _footerView;
     
-    UIView* _contentView;
+    IBOutlet UIView* cameraView;
     CDCameraOverlayView* _cameraOverlayView;
 }
 @property (strong, nonatomic) CDCameraView *cameraViewController;

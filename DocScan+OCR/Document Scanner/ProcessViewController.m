@@ -35,54 +35,52 @@
     [self.interstitial loadRequest:request];
     
     _sharedHelper = [CDImageRectangleDetector sharedDetector];
-    self.view.backgroundColor = [UIColor colorWithWhite:33.0/255.0 alpha:1.0];
-    
 
-    _imageViewer = [[UIImageView alloc] initWithImage:self.croppedImage];
-    _imageViewer.translatesAutoresizingMaskIntoConstraints = NO;
-    _imageViewer.clipsToBounds = YES;
-        _imageViewer.backgroundColor = [UIColor colorWithWhite:33.0/255.0 alpha:1.0];
-
-    NSLayoutConstraint* imgTop = [NSLayoutConstraint constraintWithItem:_imageViewer
-                                                              attribute:NSLayoutAttributeTop
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeTop
-                                                             multiplier:1.0 constant:64.0];
-    NSLayoutConstraint* imgBtm = [NSLayoutConstraint constraintWithItem:_imageViewer
-                                                              attribute:NSLayoutAttributeBottom
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeBottom
-                                                             multiplier:1.0 constant:-49.0];
-    NSLayoutConstraint* imgLeft = [NSLayoutConstraint constraintWithItem:_imageViewer
-                                                               attribute:NSLayoutAttributeLeft
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
-                                                               attribute:NSLayoutAttributeLeft
-                                                              multiplier:1.0 constant:0.0];
-    NSLayoutConstraint* imgRight = [NSLayoutConstraint constraintWithItem:_imageViewer
-                                                                attribute:NSLayoutAttributeRight
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.view
-                                                                attribute:NSLayoutAttributeRight
-                                                               multiplier:1.0 constant:0.0];
-    
-    NSArray* imgViewConstraints = [NSArray arrayWithObjects:imgBtm, imgLeft, imgRight, imgTop, nil];
+    [_imageViewer setImage:self.croppedImage];
+//    _imageViewer.translatesAutoresizingMaskIntoConstraints = NO;
+//    _imageViewer.clipsToBounds = YES;
+//        _imageViewer.backgroundColor = [UIColor colorWithWhite:33.0/255.0 alpha:1.0];
+//
+//    NSLayoutConstraint* imgTop = [NSLayoutConstraint constraintWithItem:_imageViewer
+//                                                              attribute:NSLayoutAttributeTop
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.view
+//                                                              attribute:NSLayoutAttributeTop
+//                                                             multiplier:1.0 constant:64.0];
+//    NSLayoutConstraint* imgBtm = [NSLayoutConstraint constraintWithItem:_imageViewer
+//                                                              attribute:NSLayoutAttributeBottom
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.view
+//                                                              attribute:NSLayoutAttributeBottom
+//                                                             multiplier:1.0 constant:-49.0];
+//    NSLayoutConstraint* imgLeft = [NSLayoutConstraint constraintWithItem:_imageViewer
+//                                                               attribute:NSLayoutAttributeLeft
+//                                                               relatedBy:NSLayoutRelationEqual
+//                                                                  toItem:self.view
+//                                                               attribute:NSLayoutAttributeLeft
+//                                                              multiplier:1.0 constant:0.0];
+//    NSLayoutConstraint* imgRight = [NSLayoutConstraint constraintWithItem:_imageViewer
+//                                                                attribute:NSLayoutAttributeRight
+//                                                                relatedBy:NSLayoutRelationEqual
+//                                                                   toItem:self.view
+//                                                                attribute:NSLayoutAttributeRight
+//                                                               multiplier:1.0 constant:0.0];
+//
+//    NSArray* imgViewConstraints = [NSArray arrayWithObjects:imgBtm, imgLeft, imgRight, imgTop, nil];
     
     
 
 
-    _imageViewer.contentMode = UIViewContentModeScaleAspectFit;
+//    _imageViewer.contentMode = UIViewContentModeScaleAspectFit;
     //    _imageViewer.image = self.croppedImage;
     
-    [self.view addSubview:_imageViewer];
-    [self.view addConstraints:imgViewConstraints];
+//    [self.view addSubview:_imageViewer];
+//    [self.view addConstraints:imgViewConstraints];
     
 
     
-    [self initializeHeaderView];
-    [self initializeFooterView];
+//    [self initializeHeaderView];
+//    [self initializeFooterView];
     
 
     // Do any additional setup after loading the view.
@@ -181,7 +179,7 @@
     _saveBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [_saveBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     _saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [_saveBtn setTitle:@"Share" forState:UIControlStateNormal];
+    [_saveBtn setTitle:@"Save" forState:UIControlStateNormal];
     [_saveBtn setTitleColor:[CropperConstantValues doneButtonColor] forState:UIControlStateNormal];
     [_footerView addSubview:_saveBtn];
     
@@ -630,75 +628,49 @@
 
 }
 
--(void)editButtonClicked{
-    
+-(IBAction)editButtonClicked:(id)sender
+{
     if (self.interstitial.isReady) {
         [self.interstitial presentFromRootViewController:self];
     }
     
     [UIView animateWithDuration:kButtonChangeDelay animations:^{
-        
-        
-        _editBtn.alpha = 0.0f;
-        _saveBtn.alpha = 0.0f;
-        _deleteBtn.alpha = 0.0f;
+        saveView.alpha = 0.0f;
         
     } completion:^(BOOL finished) {
-       
-        _cancelBtn.alpha = 1;
-        _cropBtn.alpha = 1.0f;
-        _rotateBtn.alpha = 1.0;
-        _filterBtn.alpha = 1.0f;
-        _doneBtn.alpha = 1.0f;
-        
+        editView.alpha = 1.0f;
     }];
 }
 
--(void)cancelButtonClicked{
-    
+-(IBAction)cancelButtonClicked:(id)sender
+{
     [UIView animateWithDuration:kButtonChangeDelay animations:^{
-        
-        
-        _cancelBtn.alpha = 0;
-        _cropBtn.alpha = 0.0f;
-        _rotateBtn.alpha = 0.0;
-        _filterBtn.alpha = 0.0f;
-        _doneBtn.alpha = 0.0f;
-
+        editView.alpha = 0.0f;
         
     } completion:^(BOOL finished) {
-        
-        
-        
-        _editBtn.alpha = 1.0f;
-        _saveBtn.alpha = 1.0f;
-        _deleteBtn.alpha = 1.0f;
-
-        
+        saveView.alpha = 1.0f;
     }];
 }
--(void)disableEditSection{
-    
+-(void)disableEditSection
+{
     _cancelBtn.enabled = NO;
     _cropBtn.enabled = NO;
     _rotateBtn.enabled = NO;
     _filterBtn.enabled = NO;
     _doneBtn.enabled = NO;
-
 }
 
--(void)enableEditSection{
-    
+-(void)enableEditSection
+{
     _cancelBtn.enabled = YES;
     _cropBtn.enabled = YES;
     _rotateBtn.enabled = YES;
     _filterBtn.enabled = YES;
     _doneBtn.enabled = YES;
-    
 }
 
--(void)cropButtonClicked{
-    
+-(IBAction)cropButtonClicked:(id)sender
+{
     CropViewController* cropperVC = [[CropViewController alloc] init];
     cropperVC.originalImage = self.orignalImage;
     cropperVC.delegate = self;
@@ -708,7 +680,8 @@
 }
 
 
--(void)rotateButtonClicked{
+-(IBAction)rotateButtonClicked:(id)sender
+{
     
     if (_rotatedDegree == 270.0) {
         
@@ -730,26 +703,40 @@
         
         [self enableEditSection];
     }];
-
-
 }
 
+-(IBAction)saveImage:(id)sender
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsPath stringByAppendingPathComponent:@"/Images"];
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
 
--(void)saveImage{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy hh:mm a"];
+    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+    NSLog(@"%@", dateStr);
+
+    NSString *fileName = [dataPath stringByAppendingFormat:@"%@", [NSString stringWithFormat:@"/%@.jpg", dateStr]];
+    NSData *data = UIImageJPEGRepresentation([self editedImage], 1.0);
+    [data writeToFile:fileName atomically:YES];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ShareViewController *shareVC = (ShareViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
+    shareVC.savedImage = [self editedImage];
+    [self.navigationController pushViewController:shareVC animated:YES];
     
     if (self.interstitial.isReady) {
         [self.interstitial presentFromRootViewController:self];
     }
-    
-    ShareViewController* shareVC = [[ShareViewController alloc] init];
-    shareVC.savedImage = [self editedImage];
-    [self.navigationController pushViewController:shareVC animated:YES];
 }
 
--(void)deleteButtonClicked{
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Document Scanner"
-                                                    message:@"Are you sure to delete current session?"
+-(IBAction)deleteButtonClicked:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Docs Scanner"
+                                                    message:@"Are you sure to delete the current session?"
                                                    delegate:self
                                           cancelButtonTitle:@"No"
                                           otherButtonTitles:@"Yes",nil];
@@ -771,7 +758,8 @@
     [alert show];
 }
 
--(void)filterChangeButtonClicked{
+-(IBAction)filterChangeButtonClicked:(id)sender
+{
     
     UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choice adjustment" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Colorful",@"Grayscale",@"Black and white", nil];
     [actionSheet showInView:self.view];

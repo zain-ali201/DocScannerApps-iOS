@@ -16,7 +16,7 @@
     
     UIView* _headerView;
     UITableView* _shareListView;
-    UIImageView* _thumbnailImageView;
+    IBOutlet UIImageView* _thumbnailImageView;
     
     NSArray* _contentArray;
     
